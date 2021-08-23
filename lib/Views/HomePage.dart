@@ -52,6 +52,30 @@ class _HomePageState extends State<HomePage> {
         title: Text('P3 - Routes'),
       ),
       body: interfaces[_bottomIndex],
+      drawer: Drawer(
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text("Choose an option"),
+          ),
+          body: Column(
+            children: [
+              ListTile(
+                title: Text("Option 1"),
+                onTap: () {
+                  print("go to");
+                },
+              ),
+              ListTile(
+                title: Text("Option 2"),
+                onTap: () {
+                  print("go to");
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_road),
         onPressed: () {
