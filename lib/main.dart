@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:revision/Views/HomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,12 +16,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('P1 - Widgets'),
-          ),
-          body: Center(
-            child: Text("Hello Sirat"),
-          )),
+        appBar: AppBar(
+          title: Text('P1 - Widgets'),
+        ),
+        body: HomePage(),
+      ),
+      builder: EasyLoading.init(),
     );
   }
 }
