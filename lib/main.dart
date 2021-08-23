@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Formation flutter'),
+            title: Text('P1 - Widgets'),
           ),
           body: Center(
             child: Text("Hello Sirat"),
