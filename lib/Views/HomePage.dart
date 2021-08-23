@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:revision/Views/listCars.dart';
+import 'package:revision/Views/savedCars.dart';
 
 import 'CarDetails.dart';
 
@@ -19,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   List<Widget> cars = [];
   @override
   void initState() {
+    interfaces.add(listCars(cars));
+    interfaces.add(SavedCars());
     super.initState();
 
     cars.add(
@@ -38,17 +42,16 @@ class _HomePageState extends State<HomePage> {
         _buildCarInfo(context, "Honda", "NSX", "assets/images/honda.jpeg"));
   }
 
+  int _bottomIndex = 0;
+
+  List<Widget> interfaces = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('P3 - Routes'),
       ),
-      body: ListView.builder(
-          itemCount: cars.length,
-          itemBuilder: (BuildContext context, int index) {
-            return cars[index];
-          }),
+      body: interfaces[_bottomIndex],
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_road),
         onPressed: () {
@@ -151,6 +154,21 @@ class _HomePageState extends State<HomePage> {
               );
             },
           );
+        },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            label: "Cars",
+            icon: Icon(Icons.list),
+          ),
+          BottomNavigationBarItem(label: "Saved", icon: Icon(Icons.bookmark)),
+        ],
+        currentIndex: _bottomIndex,
+        onTap: (int value) {
+          setState(() {
+            _bottomIndex = value;
+          });
         },
       ),
     );

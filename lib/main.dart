@@ -15,7 +15,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      routes: {
+        "/": (BuildContext context) {
+          return HomePage();
+        },
+      },
+      initialRoute: "/",
+      //home: HomePage(),
       builder: EasyLoading.init(),
     );
   }
