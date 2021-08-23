@@ -27,8 +27,11 @@ class _HomePageState extends State<HomePage> {
 
     cars.add(
       _buildCarInfo(context, "Ford", "Mustang 2020", "assets/images/stang.png",
-          description:
-              "The 2021 Mustang continues its legacy, engineered for quick turns & spirited drives. ... A 2021 Ford Mustang Mach 1 being driven on a track ..."),
+          description: """
+The 2021 Mustang continues its legacy, engineered for quick turns & spirited drives. ... A 2021 Ford Mustang Mach 1 being driven on a track .
+The Ford Mustang is a series of American automobiles manufactured by Ford. 
+In continuous production since 1964, the Mustang is currently the longest-produced Ford car nameplate. Currently in its sixth generation, it is the fifth-best selling Ford car nameplate. The namesake of the "pony car" automobile segment, the Mustang was developed as a highly styled line of sporty coupes and convertibles derived from existing model lines, initially distinguished by "long hood, short deck" proportions.
+"""),
     );
     cars.add(
       _buildCarInfo(context, "Corvette", "C8", "assets/images/corvette.jpeg"),
@@ -49,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('P3 - Routes'),
+        title: Text('P4 - Local Storage'),
       ),
       body: interfaces[_bottomIndex],
       drawer: Drawer(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:revision/Models/Cars.dart';
+import 'package:revision/localStorage/CarsRepository.dart';
 
 class CarDetails extends StatefulWidget {
   final String brand;
@@ -15,6 +17,19 @@ class CarDetails extends StatefulWidget {
 
 class _CarDetailsState extends State<CarDetails> {
   bool flag = false;
+
+  @override
+  void initState() {
+    super.initState();
+    CarsRepository.getCarByName(widget.name).then((car) {
+      if (car.name == widget.name) {
+        setState(() {
+          flag = true;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +45,29 @@ class _CarDetailsState extends State<CarDetails> {
           ),
           actions: [
             FlatButton(
-                onPressed: () {
-                  setState(() {
-                    flag = !flag;
-                    print("flag :$flag");
-                  });
-                  EasyLoading.showSuccess("Success");
+                onPressed: () async {
+                  if (flag == false) {
+                    CarsRepository.addCarToFavorite(Cars(widget.name,
+                            widget.brand, widget.photo, widget.description))
+                        .then((result) {
+                      setState(() {
+                        flag = !flag;
+                        print("flag :$flag");
+                      });
+
+                      EasyLoading.showSuccess("voiture reservée");
+                    });
+                  } else {
+                    CarsRepository.deleteProductFromFavorite(widget.name)
+                        .then((value) {
+                      setState(() {
+                        flag = !flag;
+                        print("flag :$flag");
+                      });
+
+                      EasyLoading.showSuccess("Reservation annulée");
+                    });
+                  }
                 },
                 child: flag == false
                     ? Row(
